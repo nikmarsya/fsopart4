@@ -1,0 +1,65 @@
+
+PUT http://localhost:3003/api/users:63075a5f9f7efed091c3ba61
+Content-Type: application/json
+
+{
+    "password":"abc123"
+}
+
+###
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "username": "mika12",
+    "name": "slaraulayman abid",
+    "password": "q1212112"
+}
+
+###
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "suabid",
+    "password": "qwerty"
+}
+
+###
+GET http://localhost:3003/api/users
+
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1YWJpZCIsImlkIjoiNjMwNzVhOTI5ZjdlZmVkMDkxYzNiYTY0IiwiaWF0IjoxNjYxNjEzNDExfQ.0XptU4-pEwKXsmUv9mQvvFIKAgwZm1TnrWzUEGzOj_w
+
+{
+    "title": "Building Web with Django framework",
+    "author": "paul anand",
+    "url": "http://learningdjango.com",
+    "user": "63075a929f7efed091c3ba64"
+  }
+
+###
+GET http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1YWJpZCIsImlkIjoiNjMwNzVhOTI5ZjdlZmVkMDkxYzNiYTY0IiwiaWF0IjoxNjYxNjEzNDExfQ.0XptU4-pEwKXsmUv9mQvvFIKAgwZm1TnrWzUEGzOj_w
+
+
+###
+PUT http://localhost:3003/api/users/63075a5f9f7efed091c3ba61
+Content-Type: application/json
+
+{
+    "blogs":"6305fb085190db64fa5fa264"
+}
+
+###
+POST http://localhost:3003/api/users/
+Content-Type: application/json
+
+{
+    "username":"maria",
+    "name": "maria santos",
+    "password": "maria"
+}
