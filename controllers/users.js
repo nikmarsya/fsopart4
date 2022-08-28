@@ -20,13 +20,13 @@ usersRouter.post('/', async (req,res,next) => {
         hashPassword
     })
 
-   // try{
+    try{
         const savedUser = await newUser.save()
         res.status(201).json(savedUser)
        
- //   }catch(err){
- //       next(err)
- //   }
+    }catch(err){
+        next(err)
+    }
 })
 
 //list all users with their blog entries

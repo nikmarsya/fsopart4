@@ -29,15 +29,19 @@ Content-Type: application/json
 GET http://localhost:3003/api/users
 
 ###
-POST http://localhost:3003/api/blogs
+DELETE http://localhost:3003/api/blogs/6307066268bbfc93ac46110e
 Content-Type: application/json
 Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1YWJpZCIsImlkIjoiNjMwNzVhOTI5ZjdlZmVkMDkxYzNiYTY0IiwiaWF0IjoxNjYxNjEzNDExfQ.0XptU4-pEwKXsmUv9mQvvFIKAgwZm1TnrWzUEGzOj_w
 
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+
 {
-    "title": "Building Web with Django framework",
-    "author": "paul anand",
-    "url": "http://learningdjango.com",
-    "user": "63075a929f7efed091c3ba64"
+    "title": "Data Network",
+    "author": "marina samad",
+    "url": "http://uitm.edu/marinasamad"
   }
 
 ###

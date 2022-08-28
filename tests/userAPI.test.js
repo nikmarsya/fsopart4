@@ -6,26 +6,22 @@ const bcrypt = require('bcrypt')
 const { usersinDB,initUser } = require('./test_helper')
 const api = supertest(app)
 
-
-
-beforeEach( async() => {
-   // await User.deleteMany({}) 
-    await usersinDB()
-
+beforeAll(async () => {
+  await usersinDB()
 })
 
-test('all notes are returned', async () => {
-    
+
+test('retrieves all user data', async () => {
   const response = await api.get('/api/users')
   expect(response.body).toHaveLength(initUser.length)
 })
   
-test('create user', async () => {
+test('create new user', async () => {
     const newuser =  {
-        username: "pocoyo",
-        name: "in the middle",
-        password:"ghibli"
-      }
+        username: "farida78",
+        name: "Faridah Salleh",
+        password:"121278"
+    }
 
       await api.post('/api/users')
       .send(newuser)
@@ -33,26 +29,32 @@ test('create user', async () => {
 
 })
 
-test('notes are returned as json', async () => {
-  await api
-    .get('/api/users')
-    .expect(200)
-    .expect('Content-Type', /application\/json/)
-  
-    
+test('with invalid data: username already exists', async () => {
+    const newuser =  {
+      username: "mika12",
+      name: "romika ghaus",
+      password:"121212"
+    }
+
+    await api.post('/api/users')
+    .send(newuser)
+    .expect(400)
 })
 
-test('login user with token', async () => {
-  const res = await api
-  .post('/api/login')
-  .send({ "username": "suabid","password":"qwerty" })
-  console.log('res',res.body)
- 
+test('with invalid data: password length less than 3', async () => {
+    const newuser =  {
+      username: "talib",
+      name: "abi talib",
+      password:"1"
+    }
+
+    await api.post('/api/users')
+    .send(newuser)
+    .expect(400)
 })
-afterEach(async () => {
-  await User.deleteMany({})
-})
-afterAll(() => {
+
+afterAll(async () => { 
+  await User.deleteMany()
   mongoose.connection.close()
 })
 

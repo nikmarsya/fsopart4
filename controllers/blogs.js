@@ -1,6 +1,5 @@
 const Router = require('express').Router()
 const jwt = require('jsonwebtoken')
-const { userExtractor } = require('../utils/middleware')
 const Blog = require('../models/blog')
 const User = require('../models/user')
 
@@ -18,12 +17,11 @@ Router.put('/:id', async (req,res) => {
 })
 
 //delete blog by creator only and update user account
-Router.delete('/:id',userExtractor, async (req,res) => {
+Router.delete('/:id', async (req,res) => {
+  
     const creator = req.user
     const blog = await Blog.findById(req.params.id)
-  
-
-  
+    
   if(blog.user.toString() === creator._id.toString()){
     const result = await Blog.findByIdAndRemove(req.params.id)
     const updateuser = await User.find({_id:creator._id})
@@ -44,7 +42,8 @@ Router.get('/', async (req,res) => {
 })
   
 //create blog entry
-Router.post('/',userExtractor, async (req, res) => {
+Router.post('/', async (req, res) => {
+    
     const body = req.body
       
     if(!body.title||!body.url)
@@ -61,8 +60,7 @@ Router.post('/',userExtractor, async (req, res) => {
       title:body.title,
       url:body.url,
       author:body.author,
-      likes:body.likes,
-      user:user._id
+      likes:body.likes
     })
    
     const result = await blog.save()
